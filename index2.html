@@ -1,0 +1,575 @@
+﻿<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>ChecKaro | Don't Just Trust. Verify.</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=DM+Serif+Display&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#fff8f6",
+                        "secondary-container": "#e1e2e8",
+                        "surface-tint": "#a04100",
+                        "warning-amber": "#F08C00",
+                        "on-secondary-fixed": "#191c20",
+                        "surface-bright": "#fff8f6",
+                        "on-primary": "#ffffff",
+                        "surface-container-high": "#fbe3da",
+                        "on-tertiary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "tertiary": "#006492",
+                        "border-technical": "#DEE2E6",
+                        "info-blue": "#1971C2",
+                        "success-green": "#2F9E44",
+                        "on-tertiary-fixed": "#001e2f",
+                        "surface-dim": "#edd5cc",
+                        "on-primary-fixed-variant": "#7a3000",
+                        "outline": "#8c7166",
+                        "on-error": "#ffffff",
+                        "inverse-on-surface": "#ffede6",
+                        "background": "#fff8f6",
+                        "secondary-fixed": "#e1e2e8",
+                        "tertiary-fixed-dim": "#8bceff",
+                        "on-tertiary-container": "#00334d",
+                        "on-background": "#251913",
+                        "on-secondary-container": "#626469",
+                        "inverse-primary": "#ffb693",
+                        "danger-red": "#E03131",
+                        "outline-variant": "#e0c0b2",
+                        "on-surface": "#251913",
+                        "inverse-surface": "#3b2d27",
+                        "surface-container-low": "#fff1eb",
+                        "on-surface-variant": "#584237",
+                        "error": "#ba1a1a",
+                        "surface-muted": "#F8F9FA",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-container": "#00a0e6",
+                        "surface-container": "#ffeae1",
+                        "on-error-container": "#93000a",
+                        "surface-container-highest": "#f5ded4",
+                        "primary-fixed-dim": "#ffb693",
+                        "surface-variant": "#f5ded4",
+                        "on-secondary-fixed-variant": "#44474b",
+                        "on-primary-container": "#541f00",
+                        "secondary-fixed-dim": "#c5c6cc",
+                        "primary-fixed": "#ffdbcb",
+                        "on-primary-fixed": "#341000",
+                        "secondary": "#5c5e63",
+                        "primary-container": "#f37021",
+                        "on-tertiary-fixed-variant": "#004b6f",
+                        "primary": "#a04100",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed": "#cae6ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "0px"
+                    },
+                    "spacing": {
+                        "section-gap": "20px",
+                        "internal-gap": "8px",
+                        "micro-gap": "4px",
+                        "container-max": "1120px",
+                        "element-gap": "12px"
+                    },
+                    "fontFamily": {
+                        "display-stat": ["Inter"],
+                        "body-bold": ["Inter"],
+                        "headline-md": ["DM Serif Display", "serif"],
+                        "body-main": ["Inter"],
+                        "caption": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "headline-lg": ["DM Serif Display", "serif"],
+                        "hero": ["DM Serif Display", "serif"]
+                    },
+                    "fontSize": {
+                        "display-stat": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "body-bold": ["13px", {"lineHeight": "21px", "fontWeight": "600"}],
+                        "headline-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "body-main": ["13px", {"lineHeight": "21px", "fontWeight": "400"}],
+                        "caption": ["12px", {"lineHeight": "18px", "fontWeight": "400"}],
+                        "label-caps": ["11px", {"lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "600"}],
+                        "headline-sm": ["15px", {"lineHeight": "20px", "fontWeight": "600"}],
+                        "headline-lg": ["24px", {"lineHeight": "30px", "fontWeight": "400"}],
+                        "hero": ["36px", {"lineHeight": "42px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fff8f6;
+            color: #251913;
+            width: 100%;
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+        .t-hero, .t-section-head, .t-cta-head, .t-card-head {
+            font-family: 'DM Serif Display', serif;
+        }
+        .container-audit {
+            width: min(100%, 1120px);
+            margin: 0 auto;
+            padding: 0 clamp(16px, 4vw, 48px);
+        }
+        .technical-border {
+            border: 0.5px solid #DEE2E6;
+        }
+        .loss-frame-accent {
+            border-left: 3px solid #f37021;
+        }
+        .danger-accent {
+            border-left: 3px solid #E03131;
+        }
+        .square-button {
+            border-radius: 0px !important;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        main > section {
+            width: 100%;
+        }
+        header,
+        main,
+        footer {
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+        @media (min-width: 768px) {
+            .container-audit .t-hero {
+                max-width: 760px;
+                font-size: clamp(40px, 5vw, 64px);
+                line-height: 1.03;
+            }
+            .container-audit .t-section-head,
+            .container-audit .t-cta-head {
+                font-size: clamp(24px, 2.4vw, 34px);
+                line-height: 1.15;
+            }
+        }
+        @media (max-width: 767px) {
+            header .h-16 {
+                min-height: 64px;
+                height: auto;
+                gap: 12px;
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+            header img {
+                width: 104px;
+                height: auto;
+            }
+            header button {
+                padding: 9px 9px;
+                font-size: 9px;
+                letter-spacing: 0.04em;
+                white-space: nowrap;
+            }
+            section {
+                padding-top: 40px !important;
+                padding-bottom: 40px !important;
+            }
+            .t-hero {
+                font-size: 29px;
+                line-height: 35px;
+                overflow-wrap: anywhere;
+            }
+            .technical-border,
+            .danger-accent,
+            .loss-frame-accent {
+                min-width: 0;
+            }
+            .material-symbols-outlined {
+                flex-shrink: 0;
+            }
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+<!-- TopAppBar -->
+<header class="bg-surface sticky top-0 z-50 border-b border-border-technical">
+<div class="flex justify-between items-center w-full px-section-gap py-micro-gap max-w-container-max mx-auto h-16">
+<div class="flex items-center gap-2">
+<img alt="ChecKaro" class="object-contain h-10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKUjeAdfBkm0EVddaEAeMIGbIRT7qYWYt_DRC-Y8HsbYW6GL1g1StCDx80_Ls1OdbYxce1AA8MSClfo68iSwLem2sN5FqmtmR4xI-jjLQIbWHZG1zsmggfO8hZfiBuuMeFk8s6wEQA68EIv2SHq0fhL7OrDEFeW-l5bOOXcFotlqVhInqIAHp8dfk2EQlBps1N5bJC2UmMD5j_-bN-Ll0diS3p4fwd4u2mhfQfoDcue0MsRoxS0qS-_Rikm7Bu0wWq8lwjB8jKCHchTA"><div class="flex flex-col ml-1"><span class="text-[10px] leading-tight font-label-caps text-on-surface-variant italic tracking-tight"><br></span></div>
+</div>
+<nav class="hidden md:flex items-center gap-4">
+<a class="text-primary font-bold border-b-2 border-primary font-label-caps text-label-caps" href="#">PROCESS</a>
+<a class="text-on-surface-variant font-medium hover:text-primary-container font-label-caps text-label-caps" href="#">PRICING</a>
+<a class="text-on-surface-variant font-medium hover:text-primary-container font-label-caps text-label-caps" href="#">BUILDERS</a>
+<a class="text-on-surface-variant font-medium hover:text-primary-container font-label-caps text-label-caps" href="#">SAMPLE REPORT</a>
+</nav>
+<button class="bg-primary-container text-on-primary-container px-4 py-2 font-label-caps text-label-caps square-button hover:opacity-80 transition-all">
+                BOOK INSPECTION
+            </button>
+</div>
+</header>
+<main class="flex-grow">
+<!-- Hero Section -->
+<section class="py-12 bg-surface">
+<div class="container-audit">
+<div class="mb-2">
+<span class="bg-on-background text-primary-fixed px-2 py-1 font-label-caps text-label-caps">TAKING POSSESSION SOON?</span>
+</div>
+<h1 class="mb-4 text-on-background t-hero text-hero leading-tight">86% of Hyderabad flats have hidden defects. Your builder already knows this.</h1>
+<p class="font-body-main text-[16px] text-on-surface-variant mb-6 leading-relaxed italic">
+                    Don't just trust. Verify. Before you take possession, before your 12-24 month warranty starts shrinking.
+                </p>
+<div class="danger-accent p-4 mb-8 bg-surface-container-low border border-outline-variant">
+<p class="font-body-bold text-body-bold text-danger-red flex items-center gap-2">
+                        Getting your keys in the next 90 days? Find the defects now - while the builder still has to fix them for free.
+                    </p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<button class="bg-primary-container text-on-primary-container px-6 py-4 font-headline-sm square-button flex-1 hover:opacity-90 transition-all shadow-sm">
+                        Verify my flat before possession
+                    </button>
+<button class="technical-border bg-white text-on-surface px-6 py-4 font-headline-sm square-button flex-1 hover:bg-surface-muted transition-all">
+                        View Sample Report
+                    </button>
+</div>
+</div>
+</section>
+<!-- Case Study -->
+<section class="py-12">
+<div class="container-audit">
+<div class="loss-frame-accent bg-surface-muted overflow-hidden technical-border max-w-[860px] mx-auto">
+<div class="aspect-[2.22] relative overflow-hidden bg-surface-container-low">
+<img alt="The Alladi Story" class="absolute inset-0 w-full h-full object-cover" src="alladi-story-building.png">
+<div class="absolute bottom-4 left-4">
+<span class="bg-primary-container text-white px-3 py-1 font-label-caps text-label-caps shadow-lg">CASE STUDY #4092</span>
+</div>
+</div>
+<div class="p-6 md:p-7">
+<h2 class="t-card-head text-headline-lg mb-2">The Alladi Story: Evidence vs Denial</h2>
+<div class="flex flex-wrap gap-4 mb-4">
+<span class="flex items-center gap-1 font-body-bold text-body-bold text-danger-red">
+<span class="material-symbols-outlined text-[18px]">emergency_home</span> 24 defects found
+                            </span>
+<span class="flex items-center gap-1 font-body-bold text-body-bold text-success-green">
+<span class="material-symbols-outlined text-[18px]">payments</span> Rs 3-4L saved
+                            </span>
+<span class="flex items-center gap-1 font-body-bold text-body-bold text-info-blue">
+<span class="material-symbols-outlined text-[18px]">verified</span> Builder fixed it all
+                            </span>
+</div>
+<p class="font-body-main text-body-main text-on-surface-variant italic">
+                            "The builder initially denied any structural seepage. ChecKaro's thermal imaging report forced them to acknowledge the issue and re-waterproof the entire master bathroom. Without this, I'd be spending lakhs in a year."
+                        </p>
+<div class="mt-5 grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch">
+<div class="technical-border bg-white p-4 flex flex-col justify-center">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-3">Builder response</p>
+<div class="bg-surface-container-low p-3 border border-outline-variant">
+<p class="font-body-bold text-body-bold text-on-background">Sir there is a water leakage in the bathroom wall.</p>
+<p class="font-caption text-caption text-on-surface-variant mt-2">Seen. No reply.</p>
+</div>
+</div>
+<div class="danger-accent bg-surface-container-low p-4 border border-outline-variant flex items-center">
+<p class="font-body-bold text-body-bold text-danger-red">That silence is exactly why you need a builder-proof RERA report, not a casual checklist.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Why CheckKaro -->
+<section class="py-12 bg-white border-y border-border-technical">
+<div class="container-audit">
+<div class="mb-8">
+<span class="text-primary-container font-label-caps text-label-caps">WHY CHECKKARO</span>
+<h2 class="t-section-head text-headline-lg text-on-surface mt-2">A friendly checklist can be ignored. Evidence cannot.</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+<div class="technical-border bg-surface p-5">
+<span class="material-symbols-outlined text-primary text-[28px] mb-4">engineering</span>
+<h3 class="font-headline-sm text-headline-sm mb-2">Engineer friend cannot help you</h3>
+<p class="font-body-main text-body-main text-on-surface-variant">A friend's checklist has no legal weight. A builder can dismiss it in seconds. A documented RERA report is harder to ignore.</p>
+</div>
+<div class="technical-border bg-surface p-5">
+<span class="material-symbols-outlined text-primary text-[28px] mb-4">gavel</span>
+<h3 class="font-headline-sm text-headline-sm mb-2">The builder knows RERA better than you</h3>
+<p class="font-body-main text-body-main text-on-surface-variant">Our report speaks the language builders respect: GPS-stamped evidence, measurements, thermal checks, and issue-by-issue documentation.</p>
+</div>
+<div class="technical-border bg-surface p-5">
+<span class="material-symbols-outlined text-primary text-[28px] mb-4">hourglass_top</span>
+<h3 class="font-headline-sm text-headline-sm mb-2">Your warranty window is ticking</h3>
+<p class="font-body-main text-body-main text-on-surface-variant">Every week you delay is a week of your 12-24 month defect-liability window gone. The repair cost can move from builder to owner.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Trust Strip -->
+<section class="bg-white py-8 border-b border-border-technical">
+<div class="container-audit">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="flex flex-col items-center text-center">
+<span class="font-display-stat text-display-stat text-primary">Rs 3.2L</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">avg repair cost we find per flat</span>
+</div>
+<div class="flex flex-col items-center text-center border-y md:border-y-0 md:border-x border-border-technical py-4 md:py-0">
+<span class="font-display-stat text-display-stat text-primary">200+</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">things we check every time</span>
+</div>
+<div class="flex flex-col items-center text-center">
+<span class="font-display-stat text-display-stat text-primary">86%</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">of new flats have hidden defects</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Situation-led Services -->
+<section class="py-12 bg-surface-container-low text-on-surface">
+<div class="container-audit">
+<div class="mb-8">
+<h2 class="t-section-head text-headline-lg text-on-surface">When to Audit?</h2>
+<div class="h-1 w-12 bg-primary-container mt-2"></div>
+</div>
+<div class="space-y-4">
+<div class="technical-border bg-white p-5 flex items-center justify-between hover:bg-surface transition-colors cursor-pointer group">
+<div class="flex gap-4 items-center">
+<div class="bg-primary-fixed-dim p-3">
+<span class="material-symbols-outlined text-on-primary-container">key</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm">Taking possession soon?</h3>
+<p class="font-caption text-caption text-on-surface-variant">Snagging list audit before final payment.</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+<div class="technical-border bg-white p-5 flex items-center justify-between hover:bg-surface transition-colors cursor-pointer group">
+<div class="flex gap-4 items-center">
+<div class="bg-primary-fixed-dim p-3">
+<span class="material-symbols-outlined text-on-primary-container">home_repair_service</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm">Already moved in?</h3>
+<p class="font-caption text-caption text-on-surface-variant">Defect liability audit (within 1-5 years).</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+<div class="technical-border bg-white p-5 flex items-center justify-between hover:bg-surface transition-colors cursor-pointer group">
+<div class="flex gap-4 items-center">
+<div class="bg-primary-fixed-dim p-3">
+<span class="material-symbols-outlined text-on-primary-container">contract_edit</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm">Moving into a rental?</h3>
+<p class="font-caption text-caption text-on-surface-variant">Condition report to protect your deposit.</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Process Section -->
+<section class="py-12 border-b border-border-technical">
+<div class="container-audit text-center">
+<h2 class="t-section-head text-headline-lg mb-10">Simple 3-Step Evidence Gathering</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div>
+<div class="w-12 h-12 bg-on-background text-white flex items-center justify-center mx-auto mb-4 font-bold">1</div>
+<h4 class="font-headline-sm text-headline-sm mb-2">Book</h4>
+<p class="font-body-main text-on-surface-variant">Schedule your audit in 2 minutes online.</p>
+</div>
+<div>
+<div class="w-12 h-12 bg-on-background text-white flex items-center justify-center mx-auto mb-4 font-bold">2</div>
+<h4 class="font-headline-sm text-headline-sm mb-2">Inspect</h4>
+<p class="font-body-main text-on-surface-variant">We spend 4-6 hours finding every flaw.</p>
+</div>
+<div>
+<div class="w-12 h-12 bg-on-background text-white flex items-center justify-center mx-auto mb-4 font-bold">3</div>
+<h4 class="font-headline-sm text-headline-sm mb-2">Report</h4>
+<p class="font-body-main text-on-surface-variant">Receive a builder-proof RERA report.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Evidence Section -->
+<section class="py-12 bg-white">
+<div class="container-audit">
+<div class="flex flex-col md:flex-row gap-8 items-center">
+<div class="flex-1">
+<span class="text-primary-container font-label-caps text-label-caps">LEGAL COMPLIANCE</span>
+<h2 class="t-section-head text-headline-lg mt-2 mb-4">Our report is builder-proof.</h2>
+<p class="font-body-main opacity-80 mb-6">
+                            We don't just "list" issues. We document them following RERA Section 14 compliance standards. Every defect includes:
+                        </p>
+<ul class="space-y-4">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-success-green">check_circle</span>
+<div>
+<span class="font-body-bold">GPS-Stamped Evidence</span>
+<p class="text-[12px] opacity-70">Prove exactly where and when the photo was taken.</p>
+</div>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-success-green">check_circle</span>
+<div>
+<span class="font-body-bold">Technical Measurements</span>
+<p class="text-[12px] opacity-70">Using thermal cameras and laser distance meters.</p>
+</div>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-success-green">check_circle</span>
+<div>
+<span class="font-body-bold">Builder response guide</span>
+<p class="text-[12px] opacity-70">Step-by-step guide on what to say when they deny the defects.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="flex-1">
+<div class="bg-surface p-2 shadow-2xl rotate-2 technical-border">
+<img alt="Technical property report preview" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-fQx5gMgkzAQnjTKLQPUyaRYEPDuwtzp8Q70Ytqqnll509-s13hf9MOmkbnZHS8x4sqUA9gdE4lyyKroUeA-fBtsnrXxjvdREJj4eYLQuqbUYBfsgMTxE2JKNe2-D5OSoMOQVTipf3RHqCcGJiV3XwEXLwHv47nVH5yN4rJo0uEojG17BtlW8qgQVX2DGBSESdamwHdsOVPC_KM3T_D1MfJnEZRUv-dfuXunbe8E6xV8xemlgekIqDndFSpFc9RKj8EHZXtzZ4hs">
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Packages -->
+<section class="py-12">
+<div class="container-audit">
+<h2 class="t-section-head text-headline-lg text-center mb-8">Service Packages</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Standard -->
+<div class="technical-border p-6 flex flex-col bg-white">
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-1">MOST POPULAR</span>
+<h3 class="t-card-head text-headline-md mb-2">Standard Inspection</h3>
+<p class="font-body-main text-on-surface-variant mb-4">120+ Checkpoints. Ideal for 2-3 BHK flats.</p>
+<p class="font-caption text-primary mb-6">Avg 40-80 defects found.</p>
+<div class="mt-auto pt-6 border-t border-border-technical">
+<ul class="space-y-2 mb-6 text-[12px] text-on-surface-variant">
+<li class="flex gap-2"><span class="material-symbols-outlined text-[16px] text-primary">done</span> Structural &amp; Finishing</li>
+<li class="flex gap-2"><span class="material-symbols-outlined text-[16px] text-primary">done</span> Electrical &amp; Plumbing</li>
+<li class="flex gap-2"><span class="material-symbols-outlined text-[16px] text-primary">done</span> 24h Digital Report</li>
+</ul>
+<button class="w-full py-3 technical-border square-button font-headline-sm hover:bg-surface transition-colors">Select Standard</button>
+</div>
+</div>
+<!-- Premium -->
+<div class="bg-primary-container p-6 flex flex-col text-on-primary-container shadow-xl">
+<span class="font-label-caps text-label-caps opacity-90 mb-1">HIGH STAKES</span>
+<h3 class="t-card-head text-headline-md mb-2 text-white">Premium Inspection</h3>
+<p class="font-body-main opacity-90 mb-4">200+ Checkpoints. Maximum negotiation power.</p>
+<p class="font-caption text-white/90 mb-6">Avg 80-150 defects found.</p>
+<div class="mt-auto pt-6 border-t border-on-primary-container/20">
+<ul class="space-y-2 mb-6 text-[12px]">
+<li class="flex gap-2"><span class="material-symbols-outlined text-[16px] text-white">done</span> Everything in Standard</li>
+<li class="flex gap-2"><span class="material-symbols-outlined text-[16px] text-white">done</span> Thermal Seepage Imaging</li>
+<li class="flex gap-2"><span class="material-symbols-outlined text-[16px] text-white">done</span> Builder Confrontation Guide</li>
+</ul>
+<button class="w-full py-3 bg-white text-on-background square-button font-headline-sm hover:bg-opacity-90 transition-all">Select Premium</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Team Section -->
+<section class="py-12 bg-surface">
+<div class="container-audit">
+<h2 class="t-section-head text-headline-lg mb-8">Expert Inspectors</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="flex gap-4 items-start">
+<div class="w-24 h-24 bg-primary text-white flex items-center justify-center font-bold text-2xl shadow-md border-2 border-white flex-shrink-0">PK</div>
+<div>
+<h4 class="font-headline-sm">Prakash Kumar</h4>
+<ul class="mt-2 space-y-1">
+<li class="flex items-center gap-2 font-label-caps text-primary"><span class="w-1 h-1 bg-primary"></span> Civil engineer</li>
+<li class="flex items-center gap-2 font-label-caps text-primary"><span class="w-1 h-1 bg-primary"></span> 8 years experience</li>
+<li class="flex items-center gap-2 font-label-caps text-primary"><span class="w-1 h-1 bg-primary"></span> 850+ inspections</li>
+</ul>
+<p class="font-caption mt-2 text-on-surface-variant italic">"I look for the leaks the builder tried to paint over."</p>
+</div>
+</div>
+<div class="flex gap-4 items-start">
+<div class="w-24 h-24 bg-primary text-white flex items-center justify-center font-bold text-2xl shadow-md border-2 border-white flex-shrink-0">KV</div>
+<div>
+<h4 class="font-headline-sm">Krishna V.</h4>
+<ul class="mt-2 space-y-1">
+<li class="flex items-center gap-2 font-label-caps text-primary"><span class="w-1 h-1 bg-primary"></span> Structural specialist</li>
+<li class="flex items-center gap-2 font-label-caps text-primary"><span class="w-1 h-1 bg-primary"></span> Thermal certified</li>
+<li class="flex items-center gap-2 font-label-caps text-primary"><span class="w-1 h-1 bg-primary"></span> 1,200+ inspections</li>
+</ul>
+<p class="font-caption mt-2 text-on-surface-variant italic">"If it's in the wall, I'll find it with the thermal sensor."</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Final CTA -->
+<section class="py-16 bg-white">
+<div class="container-audit text-center">
+<div class="danger-accent inline-block text-left p-6 technical-border bg-surface-container-low mb-8">
+<h2 class="t-cta-head text-display-stat text-on-background mb-4">Don't sign before you verify.</h2>
+<p class="font-headline-sm text-danger-red mb-0 leading-relaxed">Most builders have 12-24 months to fix defects after you move in. Every week you delay is a week that window shrinks - and the repair bill moves from their pocket to yours.</p>
+</div>
+<div>
+<button class="bg-primary-container text-on-primary-container px-10 py-5 font-headline-md square-button hover:scale-105 transition-transform shadow-xl">
+                        Schedule My Audit Now
+                    </button>
+<p class="font-caption text-on-surface-variant mt-4">Free consultation for upcoming project handovers in Hyderabad.</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-on-background border-t-4 border-primary-container py-12">
+<div class="container-audit text-center"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKUjeAdfBkm0EVddaEAeMIGbIRT7qYWYt_DRC-Y8HsbYW6GL1g1StCDx80_Ls1OdbYxce1AA8MSClfo68iSwLem2sN5FqmtmR4xI-jjLQIbWHZG1zsmggfO8hZfiBuuMeFk8s6wEQA68EIv2SHq0fhL7OrDEFeW-l5bOOXcFotlqVhInqIAHp8dfk2EQlBps1N5bJC2UmMD5j_-bN-Ll0diS3p4fwd4u2mhfQfoDcue0MsRoxS0qS-_Rikm7Bu0wWq8lwjB8jKCHchTA" alt="ChecKaro" class="h-10 mb-6 mx-auto object-contain brightness-0 invert opacity-90">
+<div class="flex justify-center gap-8 mb-12">
+<a class="text-surface-variant opacity-70 font-label-caps hover:text-primary-fixed-dim transition-colors" href="#">TERMS OF SERVICE</a>
+<a class="text-surface-variant opacity-70 font-label-caps hover:text-primary-fixed-dim transition-colors" href="#">PRIVACY POLICY</a>
+</div>
+<div class="mb-8">
+<p class="text-surface-variant opacity-70 font-label-caps mb-2">Questions? Call us directly.</p>
+<p class="text-white font-display-stat text-3xl font-bold">+91 98765 43210</p>
+</div>
+<div class="border-t border-white/10 pt-8">
+<p class="text-primary-fixed-dim font-body-main text-[12px] opacity-80 leading-relaxed">
+                    (c) 2024 ChecKaro - Property Inspection Authority. Defect liability windows are limited. Act before your warranty expires.
+                </p>
+</div>
+</div>
+</footer>
+<script>
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('mousedown', () => {
+                btn.style.transform = 'scale(0.97)';
+            });
+            btn.addEventListener('mouseup', () => {
+                btn.style.transform = '';
+            });
+        });
+    </script>
+
+
+
+
+
+
+
+
+
+
+</body></html>
